@@ -7,6 +7,14 @@ namespace FinanceManager
         public Form1()
         {
             InitializeComponent();
+            CreditsDGV.AutoResizeColumns();
+            CreditsDGV.AutoResizeRows();
+            DebtsDGV.AutoResizeColumns();
+            DebtsDGV.AutoResizeRows();
+        }
+
+        void FillDVGs()
+        {
 
         }
     }
