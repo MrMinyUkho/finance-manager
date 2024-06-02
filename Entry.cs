@@ -2,6 +2,7 @@
 
 namespace FinanceManager
 {
+    [Serializable]
     internal class Entry
     {
         public DateTime Date { get; set; }
