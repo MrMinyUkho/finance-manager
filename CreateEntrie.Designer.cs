@@ -1,6 +1,6 @@
 ﻿namespace FinanceManager
 {
-    partial class CreateEntrie
+    public partial class CreateEntrie
     {
         /// <summary>
         /// Required designer variable.

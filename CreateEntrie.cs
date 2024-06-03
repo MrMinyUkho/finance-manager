@@ -8,11 +8,24 @@ namespace FinanceManager
 
         private Entry entry;
 
-        public CreateEntrie()
+        public CreateEntrie(object entry = null)
         {
             InitializeComponent();
-            entry = new Entry();
+            this.entry = new Entry();
+            if (entry != null )
+            {
+                Text = "EditEntry";
+                createEntrie_btn.Text = "Змінити запис";
+                this.entry = (Entry)entry;
+                dateTimePicker1.Value = this.entry.Date;
+                moneyText.Text = this.entry.Money.ToString();
+                categoryText.Text = this.entry.Category;
+                noteText.Text = this.entry.Note;
+            }
+
         }
+
+
 
         public object GetEntry()
         {

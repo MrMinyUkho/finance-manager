@@ -90,6 +90,7 @@ namespace FinanceManager
             this.DebtsDGV.Size = new System.Drawing.Size(367, 446);
             this.DebtsDGV.TabIndex = 1;
             this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick);
+            this.DebtsDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_CellMouseDoubleClick);
             // 
             // Date
             // 
@@ -156,6 +157,7 @@ namespace FinanceManager
             this.CreditsDGV.Size = new System.Drawing.Size(367, 446);
             this.CreditsDGV.TabIndex = 3;
             this.CreditsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CreditsDGV_CellClick);
+            this.CreditsDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_CellMouseDoubleClick);
             // 
             // Date1
             // 
@@ -321,6 +323,7 @@ namespace FinanceManager
             this.clearData_btn.TabIndex = 17;
             this.clearData_btn.Text = "Очистити записи";
             this.clearData_btn.UseVisualStyleBackColor = true;
+            this.clearData_btn.Click += new System.EventHandler(this.clearData_btn_Click);
             // 
             // Filter_label
             // 

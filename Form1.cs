@@ -201,6 +201,25 @@ namespace FinanceManager
             }).Start();
         }
 
+        // Очистка записей
+        private void clearData_btn_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                DeleteData();
+        }
+
         #endregion
+
+        private void DGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var row = ((DataGridView)sender).Rows[e.RowIndex].Cells;
+            Entry entry = entries.FirstOrDefault(a => a.getDate() == (string)row[0].Value && 
+                                                      a.Money     ==  (float)row[1].Value &&
+                                                      a.Category  == (string)row[2].Value);
+            var editEntry = new CreateEntrie(entry);
+            
+            editEntry.ShowDialog();
+            FillDGVs();
+        }
     }
 }
