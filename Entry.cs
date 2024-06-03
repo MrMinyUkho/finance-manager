@@ -3,16 +3,16 @@
 namespace FinanceManager
 {
     [Serializable]
-    internal class Entry
+    class Entry
     {
-        public DateTime Date { get; set; }
-        public float  Money { get; set; }
-        public string Category { get; set; }
-        public string Note { get; set; }
+        public DateTime Date;
+        public float Money;
+        public string Category;
+        public string Note;
 
         public string getDate()
         {
-            return $"{Date.Date} {Date.Hour}:{Date.Minute}";
+            return $"{Date.Day}.{Date.Month}.{Date.Year} {Date.Hour}:{Date.Minute}";
         }
     }
 }

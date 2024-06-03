@@ -1,4 +1,6 @@
-﻿namespace FinanceManager
+﻿using System.Windows.Forms;
+
+namespace FinanceManager
 {
     partial class Form1
     {
@@ -55,7 +57,7 @@
             this.saveData_btn = new System.Windows.Forms.Button();
             this.clearData_btn = new System.Windows.Forms.Button();
             this.Filter_label = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.selectFilterBox = new System.Windows.Forms.CheckedListBox();
             this.getSummary_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DebtsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsDGV)).BeginInit();
@@ -87,6 +89,7 @@
             this.DebtsDGV.RowHeadersVisible = false;
             this.DebtsDGV.Size = new System.Drawing.Size(367, 446);
             this.DebtsDGV.TabIndex = 1;
+            this.DebtsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebtsDGV_CellClick);
             // 
             // Date
             // 
@@ -97,7 +100,7 @@
             // 
             // Money
             // 
-            this.Money.HeaderText = "Прибуток";
+            this.Money.HeaderText = "Прибуток, грн";
             this.Money.Name = "Money";
             this.Money.ReadOnly = true;
             this.Money.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -152,6 +155,7 @@
             this.CreditsDGV.RowHeadersVisible = false;
             this.CreditsDGV.Size = new System.Drawing.Size(367, 446);
             this.CreditsDGV.TabIndex = 3;
+            this.CreditsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CreditsDGV_CellClick);
             // 
             // Date1
             // 
@@ -162,7 +166,7 @@
             // 
             // Credit
             // 
-            this.Credit.HeaderText = "Витрата";
+            this.Credit.HeaderText = "Витрата, грн";
             this.Credit.Name = "Credit";
             this.Credit.ReadOnly = true;
             this.Credit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -200,6 +204,7 @@
             this.SortCategoryAZ.TabIndex = 6;
             this.SortCategoryAZ.Text = "Категорія А -> Я";
             this.SortCategoryAZ.UseVisualStyleBackColor = true;
+            this.SortCategoryAZ.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortCategoryZA
             // 
@@ -210,6 +215,7 @@
             this.SortCategoryZA.TabIndex = 7;
             this.SortCategoryZA.Text = "Категорія Я -> А";
             this.SortCategoryZA.UseVisualStyleBackColor = true;
+            this.SortCategoryZA.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortDateAZ
             // 
@@ -220,6 +226,7 @@
             this.SortDateAZ.TabIndex = 8;
             this.SortDateAZ.Text = "Дата А -> Я";
             this.SortDateAZ.UseVisualStyleBackColor = true;
+            this.SortDateAZ.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortDateZA
             // 
@@ -230,6 +237,7 @@
             this.SortDateZA.TabIndex = 9;
             this.SortDateZA.Text = "Дата Я -> А";
             this.SortDateZA.UseVisualStyleBackColor = true;
+            this.SortDateZA.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortMoneyAZ
             // 
@@ -240,6 +248,7 @@
             this.SortMoneyAZ.TabIndex = 10;
             this.SortMoneyAZ.Text = "Гроші А -> Я";
             this.SortMoneyAZ.UseVisualStyleBackColor = true;
+            this.SortMoneyAZ.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortMoneyZA
             // 
@@ -250,6 +259,7 @@
             this.SortMoneyZA.TabIndex = 11;
             this.SortMoneyZA.Text = "Гроші Я -> А";
             this.SortMoneyZA.UseVisualStyleBackColor = true;
+            this.SortMoneyZA.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortNoteAZ
             // 
@@ -260,6 +270,7 @@
             this.SortNoteAZ.TabIndex = 12;
             this.SortNoteAZ.Text = "Опис А -> Я";
             this.SortNoteAZ.UseVisualStyleBackColor = true;
+            this.SortNoteAZ.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // SortNoteZA
             // 
@@ -270,6 +281,7 @@
             this.SortNoteZA.TabIndex = 13;
             this.SortNoteZA.Text = "Опис Я -> А";
             this.SortNoteZA.UseVisualStyleBackColor = true;
+            this.SortNoteZA.Click += new System.EventHandler(this.changeSortSettings);
             // 
             // createEntry_btn
             // 
@@ -279,6 +291,7 @@
             this.createEntry_btn.TabIndex = 14;
             this.createEntry_btn.Text = "Новий запис";
             this.createEntry_btn.UseVisualStyleBackColor = true;
+            this.createEntry_btn.Click += new System.EventHandler(this.createEntry_btn_Click);
             // 
             // deleteEntry_btn
             // 
@@ -288,6 +301,7 @@
             this.deleteEntry_btn.TabIndex = 15;
             this.deleteEntry_btn.Text = "Видалити запис";
             this.deleteEntry_btn.UseVisualStyleBackColor = true;
+            this.deleteEntry_btn.Click += new System.EventHandler(this.deleteEntry_btn_Click);
             // 
             // saveData_btn
             // 
@@ -297,6 +311,7 @@
             this.saveData_btn.TabIndex = 16;
             this.saveData_btn.Text = "Зберігти зміни";
             this.saveData_btn.UseVisualStyleBackColor = true;
+            this.saveData_btn.Click += new System.EventHandler(this.saveData_btn_Click);
             // 
             // clearData_btn
             // 
@@ -317,13 +332,14 @@
             this.Filter_label.TabIndex = 18;
             this.Filter_label.Text = "Фільтрування за категорією";
             // 
-            // checkedListBox1
+            // selectFilterBox
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(769, 306);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(228, 214);
-            this.checkedListBox1.TabIndex = 20;
+            this.selectFilterBox.FormattingEnabled = true;
+            this.selectFilterBox.Location = new System.Drawing.Point(769, 306);
+            this.selectFilterBox.Name = "selectFilterBox";
+            this.selectFilterBox.Size = new System.Drawing.Size(228, 214);
+            this.selectFilterBox.TabIndex = 20;
+            this.selectFilterBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.selectFilterBox_ItemCheck);
             // 
             // getSummary_btn
             // 
@@ -340,7 +356,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 529);
             this.Controls.Add(this.getSummary_btn);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.selectFilterBox);
             this.Controls.Add(this.Filter_label);
             this.Controls.Add(this.clearData_btn);
             this.Controls.Add(this.saveData_btn);
@@ -381,14 +397,6 @@
         private System.Windows.Forms.CheckBox SortCategoryZA;
         private System.Windows.Forms.CheckBox SortDateAZ;
         private System.Windows.Forms.CheckBox SortDateZA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Money;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Note1;
         private System.Windows.Forms.CheckBox SortMoneyAZ;
         private System.Windows.Forms.CheckBox SortMoneyZA;
         private System.Windows.Forms.CheckBox SortNoteAZ;
@@ -398,8 +406,16 @@
         private System.Windows.Forms.Button saveData_btn;
         private System.Windows.Forms.Button clearData_btn;
         private System.Windows.Forms.Label Filter_label;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox selectFilterBox;
         private System.Windows.Forms.Button getSummary_btn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Money;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note1;
     }
 }
 
