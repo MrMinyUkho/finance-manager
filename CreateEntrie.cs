@@ -22,7 +22,6 @@ namespace FinanceManager
                 categoryText.Text = this.entry.Category;
                 noteText.Text = this.entry.Note;
             }
-
         }
 
 

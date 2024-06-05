@@ -352,6 +352,7 @@ namespace FinanceManager
             this.getSummary_btn.TabIndex = 21;
             this.getSummary_btn.Text = "Отримати звіт за період";
             this.getSummary_btn.UseVisualStyleBackColor = true;
+            this.getSummary_btn.Click += new System.EventHandler(this.getSummary_btn_Click);
             // 
             // Form1
             // 

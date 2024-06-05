@@ -3,7 +3,7 @@
 namespace FinanceManager
 {
     [Serializable]
-    class Entry
+    public class Entry
     {
         public DateTime Date;
         public float Money;

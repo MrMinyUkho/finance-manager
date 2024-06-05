@@ -85,15 +85,10 @@ namespace FinanceManager
                 CreditsDGV.Rows[i].Cells[3].Value = Credits[i].Note;
             }
 
-            new Thread(() => { 
-                Thread.Sleep(50);
-                Invoke((MethodInvoker)(() => {
-                    CreditsDGV.AutoResizeColumns();
-                    CreditsDGV.AutoResizeRows();
-                    DebtsDGV.AutoResizeColumns();
-                    DebtsDGV.AutoResizeRows();
-                }));
-            }).Start();
+            CreditsDGV.AutoResizeColumns();
+            CreditsDGV.AutoResizeRows();
+            DebtsDGV.AutoResizeColumns();
+            DebtsDGV.AutoResizeRows();
         }
 
         void disableAllCheck()
@@ -101,14 +96,14 @@ namespace FinanceManager
             SortCategoryAZ.Checked = false;
             SortCategoryZA.Checked = false;
 
-            SortDateAZ.Checked = false;
-            SortDateZA.Checked = false;
+            SortDateAZ.Checked     = false;
+            SortDateZA.Checked     = false;
 
-            SortMoneyAZ.Checked = false;
-            SortMoneyZA.Checked = false;
+            SortMoneyAZ.Checked    = false;
+            SortMoneyZA.Checked    = false;
 
-            SortNoteAZ.Checked = false;
-            SortNoteZA.Checked = false;
+            SortNoteAZ.Checked     = false;
+            SortNoteZA.Checked     = false;
         }
 
         void applySortFilter()
@@ -207,9 +202,8 @@ namespace FinanceManager
             if(MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 DeleteData();
         }
-
-        #endregion
-
+        
+        // Редактирование записей по двойному щелчку по ячейке
         private void DGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var row = ((DataGridView)sender).Rows[e.RowIndex].Cells;
@@ -221,5 +215,14 @@ namespace FinanceManager
             editEntry.ShowDialog();
             FillDGVs();
         }
+
+        // Получение отчёта
+        private void getSummary_btn_Click(object sender, EventArgs e)
+        {
+            new GetSummary(entries).ShowDialog();
+        }
+
+        #endregion
+
     }
 }
